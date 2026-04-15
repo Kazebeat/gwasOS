@@ -100,6 +100,7 @@
   <script src="src/programs.js"></script>
 
   <!-- ==================== GWASOS LOADING SCRIPT ==================== -->
+    <!-- ==================== SLOWER GWASOS LOADING SCRIPT ==================== -->
   <script>
     window.addEventListener('load', function() {
       const loader = document.getElementById('gwas-loader');
@@ -116,13 +117,15 @@
       ];
       let msgIndex = 0;
 
+      // SLOWER ANIMATION - takes about 4.5 to 5.5 seconds
       const interval = setInterval(() => {
-        progress += Math.random() * 14 + 5;
+        progress += Math.random() * 7 + 3;   // smaller increments = slower
 
         if (progress > 100) progress = 100;
         progressBar.style.width = progress + '%';
 
-        if (progress > msgIndex * 22 && msgIndex < messages.length) {
+        // Change message less frequently
+        if (progress > msgIndex * 25 && msgIndex < messages.length) {
           loadingText.textContent = messages[msgIndex];
           msgIndex++;
         }
@@ -130,14 +133,15 @@
         if (progress >= 100) {
           clearInterval(interval);
 
-          loader.style.transition = 'opacity 0.9s ease-out';
+          // Longer fade out so it feels premium
+          loader.style.transition = 'opacity 1.2s ease-out';
           loader.style.opacity = '0';
 
           setTimeout(() => {
             loader.remove();
-          }, 950);
+          }, 1250);
         }
-      }, 65);
+      }, 90);   // Increased from 65ms → 90ms (noticeably slower)
     });
   </script>
 
