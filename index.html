@@ -99,8 +99,10 @@
   <script src="src/visualizer-overlay.js"></script>
   <script src="src/programs.js"></script>
 
-  <!-- ==================== GWASOS LOADING + AUTO ABOUT ME ==================== -->
+  <!-- ==================== LOADING SCREEN + ABOUT ME ==================== -->
   <script>
+    let aboutMeOpened = false;
+
     window.addEventListener('load', function() {
       
       // ==================== LOADING SCREEN ====================
@@ -135,33 +137,37 @@
 
           setTimeout(() => {
             loader.remove();
-
-            // ==================== OPEN ABOUT ME AFTER LOADING ====================
-            setTimeout(() => {
-              openAboutMeWindow();
-            }, 800); // Small delay after loading screen disappears
+            
+            // Try to open About Me with multiple attempts
+            setTimeout(() => tryOpenAboutMe(), 600);
+            setTimeout(() => tryOpenAboutMe(), 1500);
+            setTimeout(() => tryOpenAboutMe(), 3000);
 
           }, 1250);
         }
       }, 90);
     });
 
-    function openAboutMeWindow() {
-      // Retro ding sound
-      const sound = new Audio('https://freesound.org/data/previews/66/66930_931655-lq.mp3');
-      sound.volume = 0.65;
-      sound.play().catch(() => {});
+    function tryOpenAboutMe() {
+      if (aboutMeOpened) return;
+      
+      if (typeof $Window === "function") {
+        aboutMeOpened = true;
+        
+        const sound = new Audio('https://freesound.org/data/previews/66/66930_931655-lq.mp3');
+        sound.volume = 0.65;
+        sound.play().catch(() => {});
 
-      // Open the window
-      $Window({
-        title: "README.txt - Notepad",
-        icon: "images/icons/notepad-16x16.png",
-        width: 580,
-        height: 520,
-        src: "/programs/about-me/index.html"
-      });
+        $Window({
+          title: "README.txt - Notepad",
+          icon: "images/icons/notepad-16x16.png",
+          width: 580,
+          height: 520,
+          src: "/programs/about-me/index.html"
+        });
+      }
     }
-  </script>  
 
-</body>
-</html>
+    // Also make it available manually (type this in console if needed: openAboutMe())
+    window.openAboutMe = tryOpenAboutMe;
+  </script>
