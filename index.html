@@ -144,6 +144,31 @@
       }, 90);   // Increased from 65ms → 90ms (noticeably slower)
     });
   </script>
+  <!-- ==================== AUTO OPEN ABOUT ME WINDOW (Direct Load) ==================== -->
+  <script>
+    window.addEventListener('load', function() {
+      // Wait until loading screen is gone
+      setTimeout(() => {
+        openAboutMeWindow();
+      }, 1600);
+    });
+
+    function openAboutMeWindow() {
+      // Retro Windows ding sound
+      const sound = new Audio('https://freesound.org/data/previews/66/66930_931655-lq.mp3');
+      sound.volume = 0.65;
+      sound.play().catch(() => {});
+
+      // Open window using direct file path
+      $Window({
+        title: "README.txt - Notepad",
+        icon: "images/icons/notepad-16x16.png",
+        width: 580,
+        height: 520,
+        src: "/programs/about-me/index.html"   // Direct path
+      });
+    }
+  </script>  
 
 </body>
 </html>
