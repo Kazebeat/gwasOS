@@ -99,14 +99,15 @@
   <script src="src/visualizer-overlay.js"></script>
   <script src="src/programs.js"></script>
 
-  <!-- ==================== GWASOS LOADING SCRIPT ==================== -->
-    <!-- ==================== SLOWER GWASOS LOADING SCRIPT ==================== -->
+  <!-- ==================== GWASOS LOADING + AUTO ABOUT ME ==================== -->
   <script>
     window.addEventListener('load', function() {
+      
+      // ==================== LOADING SCREEN ====================
       const loader = document.getElementById('gwas-loader');
       const progressBar = document.getElementById('progress-bar');
       const loadingText = document.getElementById('loading-text');
-
+      
       let progress = 0;
       const messages = [
         "Booting gwasOS...",
@@ -117,14 +118,11 @@
       ];
       let msgIndex = 0;
 
-      // SLOWER ANIMATION - takes about 4.5 to 5.5 seconds
       const interval = setInterval(() => {
-        progress += Math.random() * 7 + 3;   // smaller increments = slower
-
+        progress += Math.random() * 7 + 3;
         if (progress > 100) progress = 100;
         progressBar.style.width = progress + '%';
 
-        // Change message less frequently
         if (progress > msgIndex * 25 && msgIndex < messages.length) {
           loadingText.textContent = messages[msgIndex];
           msgIndex++;
@@ -132,40 +130,35 @@
 
         if (progress >= 100) {
           clearInterval(interval);
-
-          // Longer fade out so it feels premium
           loader.style.transition = 'opacity 1.2s ease-out';
           loader.style.opacity = '0';
 
           setTimeout(() => {
             loader.remove();
+
+            // ==================== OPEN ABOUT ME AFTER LOADING ====================
+            setTimeout(() => {
+              openAboutMeWindow();
+            }, 800); // Small delay after loading screen disappears
+
           }, 1250);
         }
-      }, 90);   // Increased from 65ms → 90ms (noticeably slower)
-    });
-  </script>
-  <!-- ==================== AUTO OPEN ABOUT ME WINDOW (Direct Load) ==================== -->
-  <script>
-    window.addEventListener('load', function() {
-      // Wait until loading screen is gone
-      setTimeout(() => {
-        openAboutMeWindow();
-      }, 1600);
+      }, 90);
     });
 
     function openAboutMeWindow() {
-      // Retro Windows ding sound
+      // Retro ding sound
       const sound = new Audio('https://freesound.org/data/previews/66/66930_931655-lq.mp3');
       sound.volume = 0.65;
       sound.play().catch(() => {});
 
-      // Open window using direct file path
+      // Open the window
       $Window({
         title: "README.txt - Notepad",
         icon: "images/icons/notepad-16x16.png",
         width: 580,
         height: 520,
-        src: "/programs/about-me/index.html"   // Direct path
+        src: "/programs/about-me/index.html"
       });
     }
   </script>  
