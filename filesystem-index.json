@@ -4380,9 +4380,9 @@
         "sound-recorder.css": null
       }
      },
-"winamp": {
-      "README.md": null,
-      "lib": {
+     "winamp": {
+        "README.md": null,
+        "lib": {
         "butterchurn.min.js": null,
         "butterchurnPresets.min.js": null,
         "webamp.bundle.js": null,
