@@ -99,16 +99,13 @@
   <script src="src/visualizer-overlay.js"></script>
   <script src="src/programs.js"></script>
 
-   <!-- ==================== GWASOS LOADING + AUTO ABOUT ME ==================== -->
+    <!-- ==================== LOADING + ABOUT ME (Bypass Filesystem) ==================== -->
   <script>
-    let aboutMeOpened = false;
-
     window.addEventListener('load', function() {
-      // Loading Screen
       const loader = document.getElementById('gwas-loader');
       const progressBar = document.getElementById('progress-bar');
       const loadingText = document.getElementById('loading-text');
-      
+
       let progress = 0;
       const messages = ["Booting gwasOS...", "Loading beat catalog...", "Connecting to the sauce...", "game was a success", "Launching desktop..."];
       let msgIndex = 0;
@@ -130,18 +127,13 @@
 
           setTimeout(() => {
             loader.remove();
-            setTimeout(tryOpenAboutMe, 900);
-          }, 1250);
+            openAboutMeWindow();   // ← Direct call
+          }, 1000);
         }
       }, 90);
     });
 
-    function tryOpenAboutMe() {
-      if (aboutMeOpened) return;
-      if (typeof $Window !== "function") return;
-
-      aboutMeOpened = true;
-
+    function openAboutMeWindow() {
       const sound = new Audio('https://freesound.org/data/previews/66/66930_931655-lq.mp3');
       sound.volume = 0.6;
       sound.play().catch(() => {});
@@ -150,11 +142,10 @@
         title: "README.txt - Notepad",
         icons: { 16: "images/icons/notepad-16x16.png" },
         width: 620,
-        height: 480,
-        src: "/programs/about-me/index.html"
+        height: 500,
+        src: "https://raw.githubusercontent.com/Kazebeat/gwasOS/master/programs/about-me/index.html"  // Direct GitHub raw link
       });
     }
 
-    // Manual test: type openAboutMe() in console (F12)
-    window.openAboutMe = tryOpenAboutMe;
+    window.openAboutMe = openAboutMeWindow;
   </script>
