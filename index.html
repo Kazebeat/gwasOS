@@ -103,7 +103,7 @@
     window.BrowserFS = { initialized: true }; // Fake success so simulator doesn't crash
   </script>
 
-  <!-- ==================== LOADING + ABOUT ME (Reliable Version) ==================== -->
+  <!-- ==================== LOADING SCREEN + ABOUT ME (Standalone) ==================== -->
   <script>
     window.addEventListener('load', function() {
       const loader = document.getElementById('gwas-loader');
@@ -138,7 +138,7 @@
           setTimeout(() => {
             loader.remove();
             openAboutMeWindow();
-          }, 1000);
+          }, 1200);
         }
       }, 90);
     });
@@ -148,13 +148,23 @@
       sound.volume = 0.6;
       sound.play().catch(() => {});
 
-      $Window({
+      // Create a simple standalone window without relying on full filesystem
+      const win = $Window({
         title: "README.txt - Notepad",
         icons: { 16: "images/icons/notepad-16x16.png" },
         width: 620,
-        height: 500,
-        src: "https://raw.githubusercontent.com/Kazebeat/gwasOS/master/programs/about-me/index.html"
+        height: 520,
       });
+
+      // Load content directly
+      fetch("https://raw.githubusercontent.com/Kazebeat/gwasOS/master/programs/about-me/index.html")
+        .then(r => r.text())
+        .then(html => {
+          win.$content.html(html);
+        })
+        .catch(() => {
+          win.$content.html("<p>Error loading About Me. Please try refreshing.</p>");
+        });
     }
 
     window.openAboutMe = openAboutMeWindow;
