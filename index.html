@@ -99,7 +99,7 @@
   <script src="src/visualizer-overlay.js"></script>
   <script src="src/programs.js"></script>
 
-    <!-- ==================== LOADING + ABOUT ME (Bypass Filesystem) ==================== -->
+      <!-- ==================== LOADING + ABOUT ME (Bypass Filesystem) ==================== -->
   <script>
     window.addEventListener('load', function() {
       const loader = document.getElementById('gwas-loader');
@@ -107,7 +107,13 @@
       const loadingText = document.getElementById('loading-text');
 
       let progress = 0;
-      const messages = ["Booting gwasOS...", "Loading beat catalog...", "Connecting to the sauce...", "game was a success", "Launching desktop..."];
+      const messages = [
+        "Booting gwasOS...",
+        "Loading beat catalog...",
+        "Connecting to the sauce...",
+        "game was a success",
+        "Launching desktop..."
+      ];
       let msgIndex = 0;
 
       const interval = setInterval(() => {
@@ -127,8 +133,8 @@
 
           setTimeout(() => {
             loader.remove();
-            openAboutMeWindow();   // ← Direct call
-          }, 1000);
+            setTimeout(openAboutMeWindow, 800);
+          }, 1250);
         }
       }, 90);
     });
@@ -143,9 +149,10 @@
         icons: { 16: "images/icons/notepad-16x16.png" },
         width: 620,
         height: 500,
-        src: "https://raw.githubusercontent.com/Kazebeat/gwasOS/master/programs/about-me/index.html"  // Direct GitHub raw link
+        src: "https://raw.githubusercontent.com/Kazebeat/gwasOS/master/programs/about-me/index.html"
       });
     }
 
+    // Manual fallback
     window.openAboutMe = openAboutMeWindow;
   </script>
