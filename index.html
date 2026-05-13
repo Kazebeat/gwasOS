@@ -99,25 +99,18 @@
   <script src="src/visualizer-overlay.js"></script>
   <script src="src/programs.js"></script>
 
-  <!-- ==================== LOADING SCREEN + ABOUT ME ==================== -->
+   <!-- ==================== GWASOS LOADING + AUTO ABOUT ME ==================== -->
   <script>
     let aboutMeOpened = false;
 
     window.addEventListener('load', function() {
-      
-      // ==================== LOADING SCREEN ====================
+      // Loading Screen
       const loader = document.getElementById('gwas-loader');
       const progressBar = document.getElementById('progress-bar');
       const loadingText = document.getElementById('loading-text');
       
       let progress = 0;
-      const messages = [
-        "Booting gwasOS...",
-        "Loading beat catalog...",
-        "Connecting to the sauce...",
-        "game was a success",
-        "Launching desktop..."
-      ];
+      const messages = ["Booting gwasOS...", "Loading beat catalog...", "Connecting to the sauce...", "game was a success", "Launching desktop..."];
       let msgIndex = 0;
 
       const interval = setInterval(() => {
@@ -137,12 +130,7 @@
 
           setTimeout(() => {
             loader.remove();
-            
-            // Try to open About Me with multiple attempts
-            setTimeout(() => tryOpenAboutMe(), 600);
-            setTimeout(() => tryOpenAboutMe(), 1500);
-            setTimeout(() => tryOpenAboutMe(), 3000);
-
+            setTimeout(tryOpenAboutMe, 900);
           }, 1250);
         }
       }, 90);
@@ -150,24 +138,23 @@
 
     function tryOpenAboutMe() {
       if (aboutMeOpened) return;
-      
-      if (typeof $Window === "function") {
-        aboutMeOpened = true;
-        
-        const sound = new Audio('https://freesound.org/data/previews/66/66930_931655-lq.mp3');
-        sound.volume = 0.65;
-        sound.play().catch(() => {});
+      if (typeof $Window !== "function") return;
 
-        $Window({
-          title: "README.txt - Notepad",
-          icon: "images/icons/notepad-16x16.png",
-          width: 580,
-          height: 520,
-          src: "/programs/about-me/index.html"
-        });
-      }
+      aboutMeOpened = true;
+
+      const sound = new Audio('https://freesound.org/data/previews/66/66930_931655-lq.mp3');
+      sound.volume = 0.6;
+      sound.play().catch(() => {});
+
+      $Window({
+        title: "README.txt - Notepad",
+        icons: { 16: "images/icons/notepad-16x16.png" },
+        width: 620,
+        height: 480,
+        src: "/programs/about-me/index.html"
+      });
     }
 
-    // Also make it available manually (type this in console if needed: openAboutMe())
+    // Manual test: type openAboutMe() in console (F12)
     window.openAboutMe = tryOpenAboutMe;
   </script>
