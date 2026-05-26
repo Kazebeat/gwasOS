@@ -93,8 +93,6 @@
       <img src="https://i.postimg.cc/dtxsJq0d/CK1IhDr.gif"/>
     </div>
   </div>
-<!-- === GWASOS CRYPTO REPORT POPUP (Win98 Style) === -->
-<div id="gwasos-crypto-popup" class="hidden" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 460px; background: #c0c0c0; border-top: 2px solid #dfdfdf; border-left: 2px solid #dfdfdf; border-right: 2px solid #808080; border-bottom: 2px solid #808080; font-family: 'MS Sans Serif', sans-serif; font-size: 13px;">
   
   <!-- Title Bar -->
   <div id="gwasos-popup-titlebar" style="background: linear-gradient(to right, #000080, #1084d0); color: white; padding: 3px 6px; font-weight: bold; cursor: move; display: flex; align-items: center; user-select: none;">
@@ -157,6 +155,60 @@
     window.BrowserFS = { initialized: true }; // Fake success so simulator doesn't crash
   </script>
 
+<!-- Crypto Report Window (Real OS Window) -->
+<script>
+// Create Crypto Report Window
+let cryptoReportWindow = null;
+
+function createCryptoReportWindow() {
+  if (cryptoReportWindow && !cryptoReportWindow.closed) {
+    cryptoReportWindow.focus();
+    return;
+  }
+
+  cryptoReportWindow = $Window({
+    title: "Free Crypto Report.exe",
+    icons: { 16: "https://win98icons.alexmeub.com/icons/png/chart-4.png" },
+    width: 460,
+    height: 320,
+    resizable: true,
+  });
+
+  cryptoReportWindow.$content.html(`
+    <div style="padding: 20px; text-align: center; background: #c0c0c0; height: 100%;">
+      <h2 style="font-size: 17px; margin: 0 0 12px 0;">Download the Free Crypto Report</h2>
+      <p style="margin: 0 0 20px 0;">Top 5 coins positioned for explosive growth in 2026</p>
+
+      <div id="popup-initial">
+        <button onclick="showEmailFormInWindow()" style="padding: 8px 40px;">Click Here</button>
+      </div>
+
+      <div id="popup-email-form" class="hidden">
+        <form onsubmit="handleCryptoSubmit(event)">
+          <input type="email" id="crypto-email" placeholder="your@email.com" required
+                 style="width: 100%; padding: 8px; margin: 12px 0; font-size: 14px;">
+          <button type="submit" style="padding: 8px 32px;">Get My Free Report →</button>
+        </form>
+      </div>
+    </div>
+  `);
+}
+
+function showEmailFormInWindow() {
+  document.getElementById('popup-initial').classList.add('hidden');
+  document.getElementById('popup-email-form').classList.remove('hidden');
+}
+
+function handleCryptoSubmit(e) {
+  e.preventDefault();
+  const email = document.getElementById('crypto-email').value.trim();
+  if (email) {
+    alert("✅ Report sent to: " + email);
+    if (cryptoReportWindow) cryptoReportWindow.close();
+  }
+}
+</script>
+  
   <!-- ==================== LOADING SCREEN + ABOUT ME + CRYPTO POPUP ==================== -->
   <script>
     window.addEventListener('load', function() {
