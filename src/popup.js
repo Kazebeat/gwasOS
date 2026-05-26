@@ -1,4 +1,4 @@
-// gwasOS - Crypto Report Popup (Win98 Style)
+// gwasOS - Crypto Report Popup - Fixed Dragging
 let isDraggingPopup = false;
 let popupOffsetX = 0;
 let popupOffsetY = 0;
@@ -9,7 +9,10 @@ function initGwasosPopup() {
   cryptoPopup = document.getElementById('gwasos-crypto-popup');
   titleBar = document.getElementById('gwasos-popup-titlebar');
 
-  if (!cryptoPopup || !titleBar) return;
+  if (!cryptoPopup || !titleBar) {
+    console.warn("Popup elements not found");
+    return;
+  }
 
   titleBar.addEventListener('mousedown', (e) => {
     if (e.target.tagName === 'BUTTON') return;
@@ -25,11 +28,8 @@ function initGwasosPopup() {
   document.addEventListener('mousemove', (e) => {
     if (!isDraggingPopup || !cryptoPopup) return;
 
-    const newX = e.clientX - popupOffsetX;
-    const newY = e.clientY - popupOffsetY;
-
-    cryptoPopup.style.left = newX + 'px';
-    cryptoPopup.style.top = newY + 'px';
+    cryptoPopup.style.left = (e.clientX - popupOffsetX) + 'px';
+    cryptoPopup.style.top = (e.clientY - popupOffsetY) + 'px';
     cryptoPopup.style.transform = 'none';
   });
 
@@ -64,7 +64,7 @@ function handleGwasosSubmit(e) {
   }
 }
 
-// Initialize (No auto popup - controlled from index.html)
+// Initialize dragging only
 window.addEventListener('load', () => {
   initGwasosPopup();
 });
