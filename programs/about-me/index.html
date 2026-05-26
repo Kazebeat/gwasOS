@@ -48,97 +48,47 @@
     Built with love on gwasOS • No cap, just vibes.<br>
     – Kazebeat
   </p>
-
-  <!-- GwasOS Email Capture Popup -->
-<div id="gwasos-popup" class="hidden fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-md bg-zinc-900 border border-amber-400/30 rounded-3xl shadow-2xl z-50 overflow-hidden">
   
-  <!-- Draggable Header -->
-  <div id="gwasos-header" class="bg-zinc-800 px-5 py-3 flex items-center justify-between border-b border-zinc-700 cursor-grab active:cursor-grabbing">
-    <span class="text-amber-400 font-medium">GwasOS • Crypto Intel</span>
-    <button onclick="hideGwasosPopup()" class="text-2xl leading-none text-zinc-400 hover:text-white">×</button>
+<!-- === GWASOS CRYPTO REPORT POPUP - Enhanced Win98 Style === -->
+<div id="gwasos-crypto-popup" class="hidden" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 460px; background: #c0c0c0; border-top: 2px solid #ffffff; border-left: 2px solid #ffffff; border-right: 2px solid #808080; border-bottom: 2px solid #808080; box-shadow: 4px 4px 8px rgba(0,0,0,0.6); z-index: 99999; font-family: 'MS Sans Serif', sans-serif; font-size: 13px;">
+  
+  <!-- Title Bar (Draggable) -->
+  <div id="gwasos-popup-titlebar" style="background: linear-gradient(to right, #000080, #1084d0); color: white; padding: 3px 4px; font-weight: bold; cursor: move; display: flex; align-items: center; user-select: none;">
+    <img src="https://win98icons.alexmeub.com/icons/png/chart-4.png" alt="" style="width: 18px; height: 18px; margin-right: 6px;"> <!-- Optional icon -->
+    <span style="flex: 1;">Free Crypto Report.exe</span>
+    <button onclick="hideGwasosPopup()" style="width: 18px; height: 18px; background: #c0c0c0; border-top: 1px solid #ffffff; border-left: 1px solid #ffffff; border-right: 1px solid #808080; border-bottom: 1px solid #808080; font-size: 12px; line-height: 12px; padding: 0; margin-left: 4px;">×</button>
   </div>
 
-  <div class="p-8 text-center">
-    <h2 class="text-3xl font-bold mb-3 text-white">Free Crypto Report</h2>
-    <p class="text-zinc-400 mb-8">Get the latest insights on high-potential assets for 2026</p>
+  <div style="padding: 16px; text-align: center; background: #c0c0c0;">
+    <div style="margin-bottom: 16px;">
+      <h2 style="font-size: 16px; font-weight: bold; margin: 0 0 8px 0;">Download the Free Crypto Report</h2>
+      <p style="margin: 0; color: #000000;">Top 5 coins positioned for explosive growth in 2026</p>
+    </div>
 
-    <!-- Initial Screen -->
-    <div id="gwasos-initial">
+    <!-- Initial State -->
+    <div id="popup-initial">
       <button onclick="showGwasosEmailForm()" 
-              class="w-full bg-gradient-to-r from-amber-400 to-yellow-500 hover:from-amber-500 hover:to-yellow-600 text-black font-bold py-4 rounded-2xl text-lg transition-all">
+              style="background: #c0c0c0; border-top: 2px solid #ffffff; border-left: 2px solid #ffffff; border-right: 2px solid #808080; border-bottom: 2px solid #808080; padding: 6px 36px; font-size: 14px; cursor: pointer; min-width: 160px;">
         Click Here
       </button>
     </div>
 
     <!-- Email Form -->
-    <div id="gwasos-email-form" class="hidden">
-      <form onsubmit="handleGwasosSubmit(event)" class="space-y-4">
-        <input type="email" id="gwasos-email" 
+    <div id="popup-email-form" class="hidden">
+      <form onsubmit="handleGwasosSubmit(event)" style="margin-top: 8px;">
+        <input type="email" id="gwasos-email-input" 
                placeholder="your@email.com"
                required
-               class="w-full bg-zinc-800 border border-zinc-700 focus:border-amber-400 rounded-2xl px-6 py-4 text-lg outline-none">
+               style="width: 100%; padding: 4px; margin-bottom: 12px; border-top: 2px solid #808080; border-left: 2px solid #808080; border-right: 2px solid #ffffff; border-bottom: 2px solid #ffffff; font-size: 13px;">
         
         <button type="submit"
-                class="w-full bg-gradient-to-r from-amber-400 to-yellow-500 text-black font-bold py-4 rounded-2xl text-lg hover:scale-[1.02] transition">
-          Send My Free Report
+                style="background: #c0c0c0; border-top: 2px solid #ffffff; border-left: 2px solid #ffffff; border-right: 2px solid #808080; border-bottom: 2px solid #808080; padding: 6px 24px; font-size: 14px;">
+          Get My Free Report →
         </button>
       </form>
     </div>
   </div>
 </div>
-
+  
 </body>
-<script>
-  let gwasosPopup = document.getElementById('gwasos-popup');
-  let isDragging = false;
-  let currentX = 0, currentY = 0;
-
-  function showGwasosPopup() {
-    gwasosPopup.classList.remove('hidden');
-    // Reset to initial state
-    document.getElementById('gwasos-initial').classList.remove('hidden');
-    document.getElementById('gwasos-email-form').classList.add('hidden');
-  }
-
-  function hideGwasosPopup() {
-    gwasosPopup.classList.add('hidden');
-  }
-
-  function showGwasosEmailForm() {
-    document.getElementById('gwasos-initial').classList.add('hidden');
-    document.getElementById('gwasos-email-form').classList.remove('hidden');
-  }
-
-  function handleGwasosSubmit(e) {
-    e.preventDefault();
-    const email = document.getElementById('gwasos-email').value;
-    
-    if (email) {
-      // TODO: Connect to your email service here
-      console.log("Email captured:", email);
-      alert("✅ Report sent! Check your inbox.");
-      hideGwasosPopup();
-    }
-  }
-
-  // Draggable logic
-  document.getElementById('gwasos-header').addEventListener('mousedown', (e) => {
-    isDragging = true;
-    currentX = e.clientX - gwasosPopup.offsetLeft;
-    currentY = e.clientY - gwasosPopup.offsetTop;
-  });
-
-  document.addEventListener('mousemove', (e) => {
-    if (isDragging) {
-      gwasosPopup.style.left = (e.clientX - currentX) + 'px';
-      gwasosPopup.style.top = (e.clientY - currentY) + 'px';
-      gwasosPopup.style.transform = 'none';
-    }
-  });
-
-  document.addEventListener('mouseup', () => isDragging = false);
-
-// Option A: Show after 3 seconds
-setTimeout(showGwasosPopup, 3000);
-</script>
 </html>
