@@ -88,4 +88,54 @@
 </div>
 
 </body>
+<script>
+  let gwasosPopup = document.getElementById('gwasos-popup');
+  let isDragging = false;
+  let currentX = 0, currentY = 0;
+
+  function showGwasosPopup() {
+    gwasosPopup.classList.remove('hidden');
+    // Reset to initial state
+    document.getElementById('gwasos-initial').classList.remove('hidden');
+    document.getElementById('gwasos-email-form').classList.add('hidden');
+  }
+
+  function hideGwasosPopup() {
+    gwasosPopup.classList.add('hidden');
+  }
+
+  function showGwasosEmailForm() {
+    document.getElementById('gwasos-initial').classList.add('hidden');
+    document.getElementById('gwasos-email-form').classList.remove('hidden');
+  }
+
+  function handleGwasosSubmit(e) {
+    e.preventDefault();
+    const email = document.getElementById('gwasos-email').value;
+    
+    if (email) {
+      // TODO: Connect to your email service here
+      console.log("Email captured:", email);
+      alert("✅ Report sent! Check your inbox.");
+      hideGwasosPopup();
+    }
+  }
+
+  // Draggable logic
+  document.getElementById('gwasos-header').addEventListener('mousedown', (e) => {
+    isDragging = true;
+    currentX = e.clientX - gwasosPopup.offsetLeft;
+    currentY = e.clientY - gwasosPopup.offsetTop;
+  });
+
+  document.addEventListener('mousemove', (e) => {
+    if (isDragging) {
+      gwasosPopup.style.left = (e.clientX - currentX) + 'px';
+      gwasosPopup.style.top = (e.clientY - currentY) + 'px';
+      gwasosPopup.style.transform = 'none';
+    }
+  });
+
+  document.addEventListener('mouseup', () => isDragging = false);
+</script>
 </html>
