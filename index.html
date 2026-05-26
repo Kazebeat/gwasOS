@@ -157,7 +157,7 @@
     window.BrowserFS = { initialized: true }; // Fake success so simulator doesn't crash
   </script>
 
-  <!-- ==================== LOADING SCREEN + ABOUT ME (Standalone) ==================== -->
+  <!-- ==================== LOADING SCREEN + ABOUT ME + CRYPTO POPUP ==================== -->
   <script>
     window.addEventListener('load', function() {
       const loader = document.getElementById('gwas-loader');
@@ -192,6 +192,14 @@
           setTimeout(() => {
             loader.remove();
             openAboutMeWindow();
+
+            // === CRYPTO REPORT TIMER - Starts AFTER loading screen is gone ===
+            setTimeout(() => {
+              if (typeof showGwasosPopup === 'function') {
+                showGwasosPopup();
+              }
+            }, 3000); // 3 seconds after desktop appears
+
           }, 1200);
         }
       }, 90);
@@ -202,7 +210,6 @@
       sound.volume = 0.6;
       sound.play().catch(() => {});
 
-      // Create a simple standalone window without relying on full filesystem
       const win = $Window({
         title: "README.txt - Notepad",
         icons: { 16: "images/icons/notepad-16x16.png" },
@@ -210,7 +217,6 @@
         height: 520,
       });
 
-      // Load content directly
       fetch("https://raw.githubusercontent.com/Kazebeat/gwasOS/master/programs/about-me/index.html")
         .then(r => r.text())
         .then(html => {
