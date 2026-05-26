@@ -97,8 +97,8 @@ if (!email) return;
         <p><strong>Attached:</strong> Crypto-Report-2026.pdf</p>
       `,
       attachment: [{
-        url: "https://kazebeat.com/reports/crypto-report-2026.pdf",   // ← Direct link to your PDF
-        name: "Crypto-Report-2026.pdf"
+        url: "https://kazebeat.com/reports/anyone-protocol-research.pdf",   // ← Direct link to your PDF
+        name: "anyone-protocol-research-report.pdf"
       }]
     })
   })
