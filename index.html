@@ -228,18 +228,6 @@
 
     window.openAboutMe = openAboutMeWindow;
   </script>
-
-  <!-- === FINAL CRYPTO REPORT TIMER - After Boot === -->
-  <script>
-    window.addEventListener('load', function() {
-      // Wait for loading screen + desktop to fully appear
-      setTimeout(() => {
-        if (typeof showGwasosPopup === 'function') {
-          showGwasosPopup();
-        }
-      }, 6500); // 6.5 seconds — adjust if needed
-    });
-  </script>
 </body>
 </html>
 
