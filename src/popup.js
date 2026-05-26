@@ -70,8 +70,14 @@ function handleGwasosSubmit(e) {
   }
 }
 
-// Initialize
+// Auto show after 5 seconds (delayed to avoid boot screen)
 window.addEventListener('load', () => {
   initGwasosPopup();
-  setTimeout(showGwasosPopup, 7000); // Show after 7 seconds
+  
+  // Give the OS time to fully initialize
+  setTimeout(() => {
+    if (typeof showGwasosPopup === 'function') {
+      showGwasosPopup();
+    }
+  }, 5500); // 5.5 seconds
 });
