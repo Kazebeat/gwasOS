@@ -1,4 +1,4 @@
-// gwasOS - Crypto Report Popup - Improved Dragging
+// gwasOS Crypto Popup - Dragging Fixed
 let isDraggingPopup = false;
 let popupOffsetX = 0;
 let popupOffsetY = 0;
@@ -10,15 +10,13 @@ function initGwasosPopup() {
   titleBar = document.getElementById('gwasos-popup-titlebar');
 
   if (!cryptoPopup || !titleBar) {
-    console.error("Crypto popup elements not found!");
+    console.error("Popup elements not found for dragging");
     return;
   }
 
-  console.log("Crypto popup initialized");
+  console.log("✅ Draggable popup initialized");
 
-  // Stronger dragging setup
-  titleBar.style.cursor = 'move';
-  titleBar.style.pointerEvents = 'auto';
+  titleBar.style.cursor = "move";
 
   titleBar.addEventListener('mousedown', (e) => {
     if (e.target.tagName === 'BUTTON') return;
@@ -28,18 +26,14 @@ function initGwasosPopup() {
     popupOffsetX = e.clientX - rect.left;
     popupOffsetY = e.clientY - rect.top;
 
-    // Bring to front
-    cryptoPopup.style.zIndex = '100000';
+    cryptoPopup.style.zIndex = 100000;
   });
 
   document.addEventListener('mousemove', (e) => {
     if (!isDraggingPopup) return;
 
-    const newLeft = e.clientX - popupOffsetX;
-    const newTop = e.clientY - popupOffsetY;
-
-    cryptoPopup.style.left = newLeft + 'px';
-    cryptoPopup.style.top = newTop + 'px';
+    cryptoPopup.style.left = (e.clientX - popupOffsetX) + 'px';
+    cryptoPopup.style.top = (e.clientY - popupOffsetY) + 'px';
     cryptoPopup.style.transform = 'none';
   });
 
@@ -48,12 +42,8 @@ function initGwasosPopup() {
   });
 }
 
-// Core functions
 function showGwasosPopup() {
-  if (cryptoPopup) {
-    cryptoPopup.classList.remove('hidden');
-    cryptoPopup.style.zIndex = '100000';
-  }
+  if (cryptoPopup) cryptoPopup.classList.remove('hidden');
 }
 
 function hideGwasosPopup() {
@@ -75,6 +65,4 @@ function handleGwasosSubmit(e) {
 }
 
 // Initialize
-window.addEventListener('load', () => {
-  initGwasosPopup();
-});
+window.addEventListener('load', initGwasosPopup);
