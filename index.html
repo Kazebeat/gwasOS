@@ -194,7 +194,7 @@
               if (typeof showGwasosPopup === 'function') {
                 showGwasosPopup();
               }
-            }, 3000); // 3 seconds after desktop appears
+            }, 5000); // 5 seconds after desktop appears
 
           }, 1200);
         }
@@ -286,30 +286,31 @@ function toggleCryptoReportWindow() {
   }
 }
 </script>
-<!-- === CRYPTO REPORT POPUP === -->
+<!-- === FIXED CRYPTO REPORT POPUP === -->
 <div id="gwasos-crypto-popup" class="hidden" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 460px; background: #c0c0c0; border-top: 2px solid #dfdfdf; border-left: 2px solid #dfdfdf; border-right: 2px solid #808080; border-bottom: 2px solid #808080; box-shadow: 6px 6px 14px rgba(0,0,0,0.7); z-index: 100000; font-family: 'MS Sans Serif', sans-serif; font-size: 13px;">
-  <div id="gwasos-popup-titlebar" style="background: linear-gradient(to right, #000080, #1084d0); color: white; padding: 3px 6px; font-weight: bold; cursor: move; display: flex; align-items: center;">
+  
+  <!-- Title Bar (Must be INSIDE the popup) -->
+  <div id="gwasos-popup-titlebar" style="background: linear-gradient(to right, #000080, #1084d0); color: white; padding: 3px 6px; font-weight: bold; cursor: move; display: flex; align-items: center; user-select: none;">
     <span style="margin-right: 6px;">📊</span>
     <span>Free Crypto Report.exe</span>
-    <button onclick="hideGwasosPopup()" style="margin-left: auto; width: 18px; height: 18px; background: #c0c0c0; border: 1px solid #ffffff; border-right-color: #808080; border-bottom-color: #808080; font-size: 12px;">×</button>
+    <button onclick="hideGwasosPopup()" style="margin-left: auto; width: 18px; height: 18px; background: #c0c0c0; border: 1px solid #ffffff; border-right-color: #808080; border-bottom-color: #808080; font-size: 12px; line-height: 12px;">×</button>
   </div>
 
   <div style="padding: 20px; text-align: center;">
-    <h2 style="font-size: 17px; margin: 0 0 12px 0;">Download the Free Crypto Report</h2>
-    <p style="margin: 0 0 20px 0;">Top 5 coins positioned for explosive growth in 2026</p>
+    <h2 style="font-size: 17px; margin: 0 0 12px 0; font-weight: bold;">Download the Free Crypto Report</h2>
+    <p style="margin: 0 0 20px 0; color: #000;">Top 5 coins positioned for explosive growth in 2026</p>
 
     <div id="popup-initial">
-      <button onclick="showGwasosEmailForm()" style="padding: 10px 50px;">Click Here</button>
+      <button onclick="showGwasosEmailForm()" style="padding: 10px 50px; font-size: 14px;">Click Here</button>
     </div>
 
     <div id="popup-email-form" class="hidden">
       <form onsubmit="handleGwasosSubmit(event)">
         <input type="email" id="gwasos-email-input" placeholder="your@email.com" required style="width: 100%; padding: 8px; margin: 12px 0;">
-        <button type="submit" style="padding: 10px 40px;">Get My Free Report →</button>
+        <button type="submit" style="padding: 10px 40px; font-size: 14px;">Get My Free Report →</button>
       </form>
     </div>
   </div>
 </div>
 </body>
 </html>
-
