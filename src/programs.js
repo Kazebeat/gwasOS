@@ -244,7 +244,7 @@ function show_help(options) {
 function openCryptoReport() {
   const win = $Window({
     title: "Free Crypto Report.exe",
-    icons: { 16: "https://win98icons.alexmeub.com/icons/png/chart-4.png" },
+    icons: { 16: "programs/crypto-report/bitcoin.png" },
     width: 400,
     height: 340,
   });
