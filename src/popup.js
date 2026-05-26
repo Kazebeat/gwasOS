@@ -1,4 +1,4 @@
-// gwasOS - Crypto Report Popup (Fixed Dragging for OS-GUI)
+// gwasOS - Crypto Report Popup (Win98 Style)
 let isDraggingPopup = false;
 let popupOffsetX = 0;
 let popupOffsetY = 0;
@@ -11,10 +11,6 @@ function initGwasosPopup() {
 
   if (!cryptoPopup || !titleBar) return;
 
-  // Prevent conflicts with OS-GUI
-  titleBar.style.pointerEvents = 'auto';
-  titleBar.style.zIndex = '100000';
-
   titleBar.addEventListener('mousedown', (e) => {
     if (e.target.tagName === 'BUTTON') return;
 
@@ -23,11 +19,9 @@ function initGwasosPopup() {
     popupOffsetX = e.clientX - rect.left;
     popupOffsetY = e.clientY - rect.top;
 
-    // Bring popup to front
     cryptoPopup.style.zIndex = 100000;
   });
 
-  // Global mouse handlers
   document.addEventListener('mousemove', (e) => {
     if (!isDraggingPopup || !cryptoPopup) return;
 
@@ -70,14 +64,12 @@ function handleGwasosSubmit(e) {
   }
 }
 
-// Auto show after 5 seconds (delayed to avoid boot screen)
+// === TIMING FIX: Much longer delay to wait for gwasOS boot ===
 window.addEventListener('load', () => {
   initGwasosPopup();
   
-  // Give the OS time to fully initialize
+  // Wait 8 seconds total (gives time for boot animation + desktop)
   setTimeout(() => {
-    if (typeof showGwasosPopup === 'function') {
-      showGwasosPopup();
-    }
-  }, 5500); // 5.5 seconds
+    showGwasosPopup();
+  }, 8000);
 });
