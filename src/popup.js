@@ -74,5 +74,5 @@ function handleGwasosSubmit(e) {
 // Auto show
 window.addEventListener('load', () => {
   initGwasosPopup();
-  setTimeout(showGwasosPopup, 8000); // 8 seconds
+  setTimeout(showGwasosPopup, 4000); // 4 seconds
 });
