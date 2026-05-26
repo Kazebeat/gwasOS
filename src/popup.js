@@ -64,12 +64,7 @@ function handleGwasosSubmit(e) {
   }
 }
 
-// === TIMING FIX: Much longer delay to wait for gwasOS boot ===
+// Initialize (No auto popup - controlled from index.html)
 window.addEventListener('load', () => {
   initGwasosPopup();
-  
-  // Wait 8 seconds total (gives time for boot animation + desktop)
-  setTimeout(() => {
-    showGwasosPopup();
-  }, 8000);
 });
