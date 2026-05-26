@@ -1,29 +1,39 @@
-// gwasOS - Crypto Report Popup (Win98 Style)
+// gwasOS - Enhanced Crypto Report Popup
 let isDraggingPopup = false;
 let popupOffsetX = 0;
 let popupOffsetY = 0;
 
 let cryptoPopup, titleBar;
 
-// Initialize popup
+// Initialize
 function initGwasosPopup() {
   cryptoPopup = document.getElementById('gwasos-crypto-popup');
   titleBar = document.getElementById('gwasos-popup-titlebar');
 
-  if (!cryptoPopup || !titleBar) return;
+  if (!cryptoPopup || !titleBar) {
+    console.warn("Popup elements not found");
+    return;
+  }
 
-  // Draggable functionality
+  // Stronger draggable
   titleBar.addEventListener('mousedown', (e) => {
     if (e.target.tagName === 'BUTTON') return;
+    
     isDraggingPopup = true;
-    popupOffsetX = e.clientX - cryptoPopup.offsetLeft;
-    popupOffsetY = e.clientY - cryptoPopup.offsetTop;
+    popupOffsetX = e.clientX - cryptoPopup.getBoundingClientRect().left;
+    popupOffsetY = e.clientY - cryptoPopup.getBoundingClientRect().top;
+
+    // Bring to front
+    cryptoPopup.style.zIndex = 99999;
   });
 
   document.addEventListener('mousemove', (e) => {
-    if (isDraggingPopup) {
-      cryptoPopup.style.left = (e.clientX - popupOffsetX) + 'px';
-      cryptoPopup.style.top = (e.clientY - popupOffsetY) + 'px';
+    if (isDraggingPopup && cryptoPopup) {
+      const newLeft = e.clientX - popupOffsetX;
+      const newTop = e.clientY - popupOffsetY;
+      
+      cryptoPopup.style.left = newLeft + 'px';
+      cryptoPopup.style.top = newTop + 'px';
       cryptoPopup.style.transform = 'none';
     }
   });
@@ -33,16 +43,17 @@ function initGwasosPopup() {
   });
 }
 
+// Show popup
 function showGwasosPopup() {
   if (!cryptoPopup) return;
   cryptoPopup.classList.remove('hidden');
+  cryptoPopup.style.zIndex = 99999; // Force on top
   document.getElementById('popup-initial').classList.remove('hidden');
   document.getElementById('popup-email-form').classList.add('hidden');
 }
 
 function hideGwasosPopup() {
-  if (!cryptoPopup) return;
-  cryptoPopup.classList.add('hidden');
+  if (cryptoPopup) cryptoPopup.classList.add('hidden');
 }
 
 function showGwasosEmailForm() {
@@ -54,14 +65,14 @@ function handleGwasosSubmit(e) {
   e.preventDefault();
   const email = document.getElementById('gwasos-email-input').value.trim();
   if (email) {
-    console.log("Email captured for Crypto Report:", email);
-    alert("✅ Thank you!\n\nYour Free Crypto Report has been sent to:\n" + email);
+    console.log("Crypto Report Email:", email);
+    alert("✅ Success!\n\nYour Free Crypto Report has been sent to:\n" + email);
     hideGwasosPopup();
   }
 }
 
-// Auto-trigger after 4 seconds
+// Auto show
 window.addEventListener('load', () => {
   initGwasosPopup();
-  setTimeout(showGwasosPopup, 4000);
+  setTimeout(showGwasosPopup, 8000); // 8 seconds
 });
