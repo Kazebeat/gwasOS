@@ -49,5 +49,43 @@
     – Kazebeat
   </p>
 
+  <!-- GwasOS Email Capture Popup -->
+<div id="gwasos-popup" class="hidden fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-md bg-zinc-900 border border-amber-400/30 rounded-3xl shadow-2xl z-50 overflow-hidden">
+  
+  <!-- Draggable Header -->
+  <div id="gwasos-header" class="bg-zinc-800 px-5 py-3 flex items-center justify-between border-b border-zinc-700 cursor-grab active:cursor-grabbing">
+    <span class="text-amber-400 font-medium">GwasOS • Crypto Intel</span>
+    <button onclick="hideGwasosPopup()" class="text-2xl leading-none text-zinc-400 hover:text-white">×</button>
+  </div>
+
+  <div class="p-8 text-center">
+    <h2 class="text-3xl font-bold mb-3 text-white">Free Crypto Report</h2>
+    <p class="text-zinc-400 mb-8">Get the latest insights on high-potential assets for 2026</p>
+
+    <!-- Initial Screen -->
+    <div id="gwasos-initial">
+      <button onclick="showGwasosEmailForm()" 
+              class="w-full bg-gradient-to-r from-amber-400 to-yellow-500 hover:from-amber-500 hover:to-yellow-600 text-black font-bold py-4 rounded-2xl text-lg transition-all">
+        Click Here
+      </button>
+    </div>
+
+    <!-- Email Form -->
+    <div id="gwasos-email-form" class="hidden">
+      <form onsubmit="handleGwasosSubmit(event)" class="space-y-4">
+        <input type="email" id="gwasos-email" 
+               placeholder="your@email.com"
+               required
+               class="w-full bg-zinc-800 border border-zinc-700 focus:border-amber-400 rounded-2xl px-6 py-4 text-lg outline-none">
+        
+        <button type="submit"
+                class="w-full bg-gradient-to-r from-amber-400 to-yellow-500 text-black font-bold py-4 rounded-2xl text-lg hover:scale-[1.02] transition">
+          Send My Free Report
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
