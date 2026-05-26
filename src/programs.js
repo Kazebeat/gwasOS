@@ -244,14 +244,19 @@ function show_help(options) {
 function openCryptoReport() {
   const win = $Window({
     title: "Free Crypto Report.exe",
-    icons: { 16: "programs/crypto-report/bitcoin.png" },
-    width: 400,
-    height: 340,
+    icons: { 
+      16: "programs/crypto-report/bitcoin.png",   // Small icon in title bar
+      32: "programs/crypto-report/bitcoin.png"    // Larger icon
+    },
+    width: 420,
+    height: 360,
   });
 
   fetch("programs/crypto-report/index.html")
     .then(r => r.text())
-    .then(html => win.$content.html(html));
+    .then(html => {
+      win.$content.html(html);
+    });
 }
 function Notepad(file_path) {
 	// TODO: DRY the default file names and title code (use document.title of the page in the iframe, in make_iframe_window)
