@@ -240,7 +240,19 @@ function show_help(options) {
 	task.$help_window = $help_window;
 	return task;
 }
+// Crypto Report Program
+function openCryptoReport() {
+  const win = $Window({
+    title: "Free Crypto Report.exe",
+    icons: { 16: "https://win98icons.alexmeub.com/icons/png/chart-4.png" },
+    width: 400,
+    height: 340,
+  });
 
+  fetch("programs/crypto-report/index.html")
+    .then(r => r.text())
+    .then(html => win.$content.html(html));
+}
 function Notepad(file_path) {
 	// TODO: DRY the default file names and title code (use document.title of the page in the iframe, in make_iframe_window)
 	var document_title = file_path ? file_name_from_path(file_path) : "Untitled";
