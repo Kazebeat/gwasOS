@@ -22,6 +22,20 @@
     }
     h1 { margin: 0 0 10px 0; font-size: 18px; }
     hr { border: 1px solid #808080; }
+    <style>
+  /* === Added for better window behavior === */
+  .window {
+    position: absolute !important;
+    resize: both !important;
+    overflow: auto !important;
+    box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.5) !important;
+  }
+
+  /* Make sure popup stays on top */
+  #gwasos-crypto-popup {
+    z-index: 99999 !important;
+  }
+</style>
   </style>
 </head>
 <body>
