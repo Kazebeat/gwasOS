@@ -253,5 +253,19 @@
 
   window.openAboutMe = openAboutMeWindow;
 </script>
+
+<script>
+// Toggle Crypto Popup (Open / Close)
+function toggleCryptoPopup() {
+  const popup = document.getElementById('gwasos-crypto-popup');
+  if (!popup) return;
+
+  if (popup.classList.contains('hidden')) {
+    showGwasosPopup();
+  } else {
+    hideGwasosPopup();
+  }
+}
+</script>
 </body>
 </html>
