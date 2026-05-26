@@ -226,7 +226,7 @@
 
     window.openAboutMe = openAboutMeWindow;
   </script>
-<!-- === CRYPTO REPORT MINIMIZABLE WINDOW === -->
+<!-- === CRYPTO REPORT WINDOW (Minimizible) === -->
 <script>
 // Crypto Report Window
 let cryptoReportWindow = null;
@@ -241,14 +241,14 @@ function createCryptoReportWindow() {
     title: "Free Crypto Report.exe",
     icons: { 16: "https://win98icons.alexmeub.com/icons/png/chart-4.png" },
     width: 480,
-    height: 340,
+    height: 360,
     resizable: true,
   });
 
   cryptoReportWindow.$content.html(`
-    <div style="padding: 25px; text-align: center; background: #c0c0c0; height: 100%; font-family: 'MS Sans Serif', sans-serif;">
+    <div style="padding: 25px; text-align: center; background: #c0c0c0; height: 100%; font-family: 'MS Sans Serif', sans-serif; color: black;">
       <h2 style="font-size: 18px; margin: 0 0 15px 0; font-weight: bold;">Download the Free Crypto Report</h2>
-      <p style="margin: 0 0 25px 0; color: #000;">Top 5 coins positioned for explosive growth in 2026</p>
+      <p style="margin: 0 0 25px 0;">Top 5 coins positioned for explosive growth in 2026</p>
 
       <div id="win-initial">
         <button onclick="showEmailFormInWin()" style="padding: 10px 50px; font-size: 15px;">Click Here</button>
