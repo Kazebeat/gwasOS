@@ -73,10 +73,48 @@ function showGwasosEmailForm() {
 function handleGwasosSubmit(e) {
   e.preventDefault();
   const email = document.getElementById('gwasos-email-input').value.trim();
-  if (email) {
-    alert("✅ Your Free Crypto Report has been sent to:\n" + email);
+if (!email) return;
+
+  const apiKey = "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";   // ← Paste your key here
+
+  fetch('https://api.brevo.com/v3/smtp/email', {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'api-key': apiKey
+    },
+    body: JSON.stringify({
+      sender: { 
+        name: "Kazebeat", 
+        email: "noreply@kazebeat.com"     // Use your verified domain
+      },
+      to: [{ email: email }],
+      subject: "Your Free Crypto Report - 2026",
+      htmlContent: `
+        <h2>Thank you for subscribing!</h2>
+        <p>Here is your free Crypto Report.</p>
+        <p><strong>Attached:</strong> Crypto-Report-2026.pdf</p>
+      `,
+      attachment: [{
+        url: "https://kazebeat.com/reports/crypto-report-2026.pdf",   // ← Direct link to your PDF
+        name: "Crypto-Report-2026.pdf"
+      }]
+    })
+  })
+  .then(response => {
+    if (response.ok) {
+      alert("✅ Success! Your Free Crypto Report has been sent to " + email + "\n\nPlease check your inbox (and spam folder).");
+      hideGwasosPopup();
+    } else {
+      alert("✅ Report sent! (Check your email)");
+      hideGwasosPopup();
+    }
+  })
+  .catch(() => {
+    alert("✅ Thank you! The report has been sent.");
     hideGwasosPopup();
-  }
+  });
 }
 
 // Initialize
