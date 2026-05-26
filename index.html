@@ -230,15 +230,17 @@
     window.openAboutMe = openAboutMeWindow;
   </script>
 
-  <!-- === CRYPTO REPORT AUTO POPUP TIMER === -->
+  <!-- === FINAL CRYPTO REPORT TIMER - After Boot === -->
   <script>
     window.addEventListener('load', function() {
-      // Wait for gwasOS to fully boot up
+      // Wait for loading screen + desktop to fully appear
       setTimeout(() => {
         if (typeof showGwasosPopup === 'function') {
           showGwasosPopup();
         }
-      }, 5500); // 5.5 seconds after load
+      }, 6500); // 6.5 seconds — adjust if needed
     });
   </script>
+</body>
+</html>
 
