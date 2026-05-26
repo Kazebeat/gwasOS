@@ -1,4 +1,3 @@
-// gwasOS Crypto Report Popup
 let isDraggingPopup = false;
 let popupOffsetX = 0, popupOffsetY = 0;
 let cryptoPopup, titleBar;
@@ -27,8 +26,7 @@ function initGwasosPopup() {
 }
 
 function showGwasosPopup() {
-  if (!cryptoPopup) return;
-  cryptoPopup.classList.remove('hidden');
+  if (cryptoPopup) cryptoPopup.classList.remove('hidden');
 }
 
 function hideGwasosPopup() {
@@ -49,5 +47,4 @@ function handleGwasosSubmit(e) {
   }
 }
 
-// Initialize
 window.addEventListener('load', initGwasosPopup);
