@@ -24,6 +24,24 @@
 <link rel="prefetch" href="/filesystem-index.json">
 <link rel="prefetch" href="/desktop/CREDITS.txt">
 <link rel="prefetch" href="/programs/notepad/index.html">
+<!-- === Custom Styles for Crypto Popup & Windows === -->
+  <style>
+    #gwasos-crypto-popup {
+      position: fixed !important;
+      z-index: 100000 !important;
+      user-select: none;
+      box-shadow: 6px 6px 14px rgba(0, 0, 0, 0.7) !important;
+    }
+
+    #gwasos-popup-titlebar {
+      cursor: move !important;
+    }
+
+    /* Help with other windows */
+    .window, .os-gui-window {
+      box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.6) !important;
+    }
+  </style>  
 </head>
 
 <body style="margin:0; overflow:hidden; background:#000;">
@@ -75,7 +93,42 @@
       <img src="https://i.postimg.cc/dtxsJq0d/CK1IhDr.gif"/>
     </div>
   </div>
+<!-- === GWASOS CRYPTO REPORT POPUP (Win98 Style) === -->
+<div id="gwasos-crypto-popup" class="hidden" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 460px; background: #c0c0c0; border-top: 2px solid #dfdfdf; border-left: 2px solid #dfdfdf; border-right: 2px solid #808080; border-bottom: 2px solid #808080; font-family: 'MS Sans Serif', sans-serif; font-size: 13px;">
+  
+  <!-- Title Bar -->
+  <div id="gwasos-popup-titlebar" style="background: linear-gradient(to right, #000080, #1084d0); color: white; padding: 3px 6px; font-weight: bold; cursor: move; display: flex; align-items: center; user-select: none;">
+    <span style="margin-right: 6px;">📊</span>
+    <span>Free Crypto Report.exe</span>
+    <button onclick="hideGwasosPopup()" style="margin-left: auto; width: 18px; height: 18px; background: #c0c0c0; border: 1px solid #ffffff; border-right-color: #808080; border-bottom-color: #808080; font-size: 12px; line-height: 12px;">×</button>
+  </div>
 
+  <div style="padding: 18px; text-align: center;">
+    <h2 style="font-size: 17px; margin: 0 0 10px 0; font-weight: bold;">Download the Free Crypto Report</h2>
+    <p style="margin: 0 0 18px 0; color: #000;">Top 5 coins positioned for explosive growth in 2026</p>
+
+    <div id="popup-initial">
+      <button onclick="showGwasosEmailForm()" 
+              style="background: #c0c0c0; border-top: 2px solid #ffffff; border-left: 2px solid #ffffff; border-right: 2px solid #808080; border-bottom: 2px solid #808080; padding: 8px 40px; font-size: 14px; cursor: pointer;">
+        Click Here
+      </button>
+    </div>
+
+    <div id="popup-email-form" class="hidden">
+      <form onsubmit="handleGwasosSubmit(event)">
+        <input type="email" id="gwasos-email-input" 
+               placeholder="your@email.com"
+               required
+               style="width: 100%; padding: 6px; margin: 12px 0; border: 2px inset #ffffff; font-size: 13px;">
+        
+        <button type="submit"
+                style="background: #c0c0c0; border-top: 2px solid #ffffff; border-left: 2px solid #ffffff; border-right: 2px solid #808080; border-bottom: 2px solid #808080; padding: 8px 32px; font-size: 14px;">
+          Get My Free Report →
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
   <script src="lib/jquery.min.js"></script>
   <script src="lib/browserfs.js"></script>
   <script src="lib/clippy.js/build/clippy.js"></script>
@@ -98,6 +151,7 @@
   <script src="src/window-switcher.js"></script>
   <script src="src/visualizer-overlay.js"></script>
   <script src="src/programs.js"></script>
+  <script src="src/popup.js"></script>
   <!-- TEMPORARY FIX: Disable broken filesystem -->
   <script>
     window.BrowserFS = { initialized: true }; // Fake success so simulator doesn't crash
