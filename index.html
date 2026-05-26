@@ -226,13 +226,13 @@
 
   <!-- === CRYPTO REPORT AUTO POPUP TIMER === -->
   <script>
-    // Show Crypto Report popup 5 seconds AFTER the desktop is fully loaded
     window.addEventListener('load', function() {
-      // Wait for gwasOS boot animation to complete
+      // Wait for gwasOS to fully boot up
       setTimeout(() => {
         if (typeof showGwasosPopup === 'function') {
           showGwasosPopup();
         }
-      }, 5000); // 5 seconds after boot
+      }, 5500); // 5.5 seconds after load
     });
   </script>
+
