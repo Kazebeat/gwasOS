@@ -153,62 +153,7 @@
   <!-- TEMPORARY FIX: Disable broken filesystem -->
   <script>
     window.BrowserFS = { initialized: true }; // Fake success so simulator doesn't crash
-  </script>
-
-<!-- Crypto Report Window (Real OS Window) -->
-<script>
-// Create Crypto Report Window
-let cryptoReportWindow = null;
-
-function createCryptoReportWindow() {
-  if (cryptoReportWindow && !cryptoReportWindow.closed) {
-    cryptoReportWindow.focus();
-    return;
-  }
-
-  cryptoReportWindow = $Window({
-    title: "Free Crypto Report.exe",
-    icons: { 16: "https://win98icons.alexmeub.com/icons/png/chart-4.png" },
-    width: 460,
-    height: 320,
-    resizable: true,
-  });
-
-  cryptoReportWindow.$content.html(`
-    <div style="padding: 20px; text-align: center; background: #c0c0c0; height: 100%;">
-      <h2 style="font-size: 17px; margin: 0 0 12px 0;">Download the Free Crypto Report</h2>
-      <p style="margin: 0 0 20px 0;">Top 5 coins positioned for explosive growth in 2026</p>
-
-      <div id="popup-initial">
-        <button onclick="showEmailFormInWindow()" style="padding: 8px 40px;">Click Here</button>
-      </div>
-
-      <div id="popup-email-form" class="hidden">
-        <form onsubmit="handleCryptoSubmit(event)">
-          <input type="email" id="crypto-email" placeholder="your@email.com" required
-                 style="width: 100%; padding: 8px; margin: 12px 0; font-size: 14px;">
-          <button type="submit" style="padding: 8px 32px;">Get My Free Report →</button>
-        </form>
-      </div>
-    </div>
-  `);
-}
-
-function showEmailFormInWindow() {
-  document.getElementById('popup-initial').classList.add('hidden');
-  document.getElementById('popup-email-form').classList.remove('hidden');
-}
-
-function handleCryptoSubmit(e) {
-  e.preventDefault();
-  const email = document.getElementById('crypto-email').value.trim();
-  if (email) {
-    alert("✅ Report sent to: " + email);
-    if (cryptoReportWindow) cryptoReportWindow.close();
-  }
-}
-</script>
-  
+  </script>  
   <!-- ==================== LOADING SCREEN + ABOUT ME + CRYPTO POPUP ==================== -->
   <script>
     window.addEventListener('load', function() {
@@ -281,6 +226,67 @@ function handleCryptoSubmit(e) {
 
     window.openAboutMe = openAboutMeWindow;
   </script>
+<!-- === CRYPTO REPORT MINIMIZABLE WINDOW === -->
+<script>
+// Crypto Report Window
+let cryptoReportWindow = null;
+
+function createCryptoReportWindow() {
+  if (cryptoReportWindow && !cryptoReportWindow.closed) {
+    cryptoReportWindow.focus();
+    return;
+  }
+
+  cryptoReportWindow = $Window({
+    title: "Free Crypto Report.exe",
+    icons: { 16: "https://win98icons.alexmeub.com/icons/png/chart-4.png" },
+    width: 480,
+    height: 340,
+    resizable: true,
+  });
+
+  cryptoReportWindow.$content.html(`
+    <div style="padding: 25px; text-align: center; background: #c0c0c0; height: 100%; font-family: 'MS Sans Serif', sans-serif;">
+      <h2 style="font-size: 18px; margin: 0 0 15px 0; font-weight: bold;">Download the Free Crypto Report</h2>
+      <p style="margin: 0 0 25px 0; color: #000;">Top 5 coins positioned for explosive growth in 2026</p>
+
+      <div id="win-initial">
+        <button onclick="showEmailFormInWin()" style="padding: 10px 50px; font-size: 15px;">Click Here</button>
+      </div>
+
+      <div id="win-email-form" class="hidden" style="margin-top: 15px;">
+        <form onsubmit="handleCryptoSubmit(event)">
+          <input type="email" id="crypto-email-input" placeholder="your@email.com" required
+                 style="width: 100%; padding: 8px; margin-bottom: 15px; font-size: 14px;">
+          <button type="submit" style="padding: 10px 40px; font-size: 15px;">Get My Free Report →</button>
+        </form>
+      </div>
+    </div>
+  `);
+}
+
+function showEmailFormInWin() {
+  document.getElementById('win-initial').classList.add('hidden');
+  document.getElementById('win-email-form').classList.remove('hidden');
+}
+
+function handleCryptoSubmit(e) {
+  e.preventDefault();
+  const email = document.getElementById('crypto-email-input').value.trim();
+  if (email) {
+    alert("✅ Thank you!\n\nYour Free Crypto Report has been sent to:\n" + email);
+    if (cryptoReportWindow) cryptoReportWindow.close();
+  }
+}
+
+function toggleCryptoReportWindow() {
+  if (!cryptoReportWindow || cryptoReportWindow.closed) {
+    createCryptoReportWindow();
+  } else {
+    cryptoReportWindow.close();
+  }
+}
+</script>
 </body>
 </html>
 
