@@ -73,9 +73,12 @@ function showGwasosEmailForm() {
 function handleGwasosSubmit(e) {
   e.preventDefault();
   const email = document.getElementById('gwasos-email-input').value.trim();
-if (!email) return;
+  
+  if (!email) return;
 
-  const apiKey = "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";   // ← Paste your key here
+  alert("Debug Mode:\nEmail captured: " + email + "\n\nNow attempting to send via Brevo...");
+
+  const apiKey = "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";   // ← Make sure this is filled
 
   fetch('https://api.brevo.com/v3/smtp/email', {
     method: 'POST',
@@ -85,34 +88,30 @@ if (!email) return;
       'api-key': apiKey
     },
     body: JSON.stringify({
-      sender: { 
-        name: "Kazebeat", 
-        email: "noreply@kazebeat.com"     // Use your verified domain
-      },
+      sender: { name: "Kazebeat", email: "noreply@kazebeat.com" },
       to: [{ email: email }],
-      subject: "Your Free Crypto Report - 2026",
-      htmlContent: `
-        <h2>Thank you for subscribing!</h2>
-        <p>Here is your free Crypto Report.</p>
-        <p><strong>Attached:</strong> Crypto-Report-2026.pdf</p>
-      `,
+      subject: "Your Free Anyone Protocol Report",
+      htmlContent: "<h2>Thank you! Your report is attached.</h2>",
       attachment: [{
-        url: "https://kazebeat.com/reports/anyone-protocol-research.pdf",   // ← Direct link to your PDF
-        name: "anyone-protocol-research-report.pdf"
+        url: "https://kazebeat.com/reports/anyone-protocol-research.pdf",
+        name: "Anyone-Protocol-Research-Report.pdf"
       }]
     })
   })
-  .then(response => {
+  .then(async response => {
+    const data = await response.json();
+    console.log("Brevo Response:", data);
+    
     if (response.ok) {
-      alert("✅ Success! Your Free Crypto Report has been sent to " + email + "\n\nPlease check your inbox (and spam folder).");
-      hideGwasosPopup();
+      alert("✅ Report sent successfully to " + email);
     } else {
-      alert("✅ Report sent! (Check your email)");
-      hideGwasosPopup();
+      alert("❌ Brevo Error: " + (data.message || "Unknown error"));
     }
+    hideGwasosPopup();
   })
-  .catch(() => {
-    alert("✅ Thank you! The report has been sent.");
+  .catch(err => {
+    console.error("Fetch Error:", err);
+    alert("❌ Failed to send email. Check console (F12) for details.");
     hideGwasosPopup();
   });
 }
