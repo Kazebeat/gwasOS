@@ -70,10 +70,20 @@ function showGwasosEmailForm() {
   document.getElementById('popup-email-form').classList.remove('hidden');
 }
 function handleGwasosSubmit(e) {
-  e.preventDefault();
+  e.preventDefault();   // This is very important - stops page from reloading
+
   const email = document.getElementById('gwasos-email-input').value.trim();
   
-  if (!email) return;
+  if (!email) {
+    alert("Please enter your email address");
+    return;
+  }
+
+  // Show loading state
+  const submitButton = e.target.querySelector('button[type="submit"]');
+  const originalText = submitButton.textContent;
+  submitButton.textContent = "Sending...";
+  submitButton.disabled = true;
 
   fetch('send-report.php', {
     method: 'POST',
@@ -82,16 +92,21 @@ function handleGwasosSubmit(e) {
   })
   .then(response => response.json())
   .then(data => {
-    if (data.success) {
-      alert("✅ Success! Your Free Report has been sent to " + email);
+    if (data.status === 'success') {
+      alert("✅ Success! Your report has been sent to " + email + "\n\nPlease check your inbox.");
     } else {
-      alert("✅ Report sent! Please check your inbox.");
+      alert("✅ Thank you! The report should arrive shortly.");
     }
     hideGwasosPopup();
   })
-  .catch(() => {
+  .catch(error => {
+    console.error("Error:", error);
     alert("✅ Thank you! The report should arrive shortly.");
     hideGwasosPopup();
+  })
+  .finally(() => {
+    submitButton.textContent = originalText;
+    submitButton.disabled = false;
   });
 }
 
