@@ -26,6 +26,22 @@
 <link rel="prefetch" href="/programs/notepad/index.html">
 <!-- === Custom Styles for Crypto Popup & Windows === -->
   <style>
+    /* Responsive Desktop Icons */
+@media (max-width: 768px) {
+  /* Move icons closer together on mobile */
+  div[onclick*="openCryptoReport"] {
+    left: 30px !important;
+    top: 240px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  div[onclick*="openCryptoReport"] {
+    left: 20px !important;
+    top: 220px !important;
+    width: 76px !important;
+  }
+}
     #gwasos-crypto-popup {
       position: fixed !important;
       z-index: 100000 !important;
