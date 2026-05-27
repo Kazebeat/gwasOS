@@ -103,6 +103,8 @@
   </div>
 
 
+
+
   <div class="start-menu outset-deep" hidden style="display: none; z-index: 5001;">
     <div class="start-menu-titlebar"></div>
     <div class="start-menu-content">
@@ -213,6 +215,7 @@
         win.$content.html(html);
       })
       .catch(() => {
+        win.$content.html("<p>Error loading About Me content.</p>");
         win.$content.html("<p>Error loading About Me content.</p>");
       });
   }
