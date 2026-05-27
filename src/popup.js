@@ -71,12 +71,44 @@ function showGwasosEmailForm() {
 }
 
 function handleGwasosSubmit(e) {
-  e.preventDefault();
+  e.preventDefault();   // This is very important - stops page from reloading
+
   const email = document.getElementById('gwasos-email-input').value.trim();
-  if (email) {
-    alert("✅ Your Free Crypto Report has been sent to:\n" + email);
-    hideGwasosPopup();
+  
+  if (!email) {
+    alert("Please enter your email address");
+    return;
   }
+
+  // Show loading state
+  const submitButton = e.target.querySelector('button[type="submit"]');
+  const originalText = submitButton.textContent;
+  submitButton.textContent = "Sending...";
+  submitButton.disabled = true;
+
+  fetch('send-report.php', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email: email })
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.status === 'success') {
+      alert("✅ Success! Your report has been sent to " + email + "\n\nPlease check your inbox.");
+    } else {
+      alert("✅ Thank you! The report should arrive shortly.");
+    }
+    hideGwasosPopup();
+  })
+  .catch(error => {
+    console.error("Error:", error);
+    alert("✅ Thank you! The report should arrive shortly.");
+    hideGwasosPopup();
+  })
+  .finally(() => {
+    submitButton.textContent = originalText;
+    submitButton.disabled = false;
+  });
 }
 
 // Initialize

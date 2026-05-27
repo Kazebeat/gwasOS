@@ -7,53 +7,106 @@
     body {
       font-family: 'MS Sans Serif', sans-serif;
       margin: 0;
-      padding: 20px;
+      padding: 0;
       background: #c0c0c0;
       color: black;
-      line-height: 1.5;
-      font-size: 14px;
+      height: 100%;
+      overflow: hidden;
     }
+
+    .content {
+      padding: 20px 25px;
+      height: calc(100vh - 40px);   /* Full height minus title bar */
+      overflow-y: auto;             /* Enable vertical scrolling */
+      line-height: 1.65;
+      font-size: 14px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    h1 { 
+      margin: 0 0 12px 0; 
+      font-size: 18px; 
+    }
+    
     img {
       float: right;
-      margin: 0 0 15px 15px;
+      margin: 0 0 20px 25px;
       border: 2px solid #000;
       box-shadow: 3px 3px 0 #808080;
       max-width: 180px;
     }
-    h1 { 
-      margin: 0 0 10px 0; 
-      font-size: 18px; 
+    
+    p {
+      margin-bottom: 14px;
     }
+    
     hr { 
       border: 1px solid #808080; 
+      margin: 20px 0;
+    }
+
+    ul {
+      margin: 10px 0 20px 25px;
+    }
+
+    /* Classic Win98 Scrollbar */
+    .content::-webkit-scrollbar {
+      width: 18px;
+    }
+    .content::-webkit-scrollbar-track {
+      background: #dfdfdf;
+      border-left: 2px solid #808080;
+    }
+    .content::-webkit-scrollbar-thumb {
+      background: #c0c0c0;
+      border: 2px solid #ffffff;
+      border-right-color: #808080;
+      border-bottom-color: #808080;
+    }
+
+    /* Mobile Optimization */
+    @media (max-width: 600px) {
+      .content {
+        padding: 15px 18px;
+        font-size: 13.5px;
+      }
+      img {
+        float: none;
+        margin: 0 auto 20px;
+        display: block;
+        max-width: 160px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <h1>📝 README.txt</h1>
-  <p><strong>Kazebeat • Music Producer • New York City, NY</strong></p>
+  <div class="content">
+    <h1>📝 README.txt</h1>
+    <p><strong>Kazebeat • Music Producer • New York City, NY</strong></p>
 
-  <img src="https://raw.githubusercontent.com/Kazebeat/gwasOS/master/programs/about-me/profile-pic-main.png" alt="Kazebeat">
+    <img src="https://raw.githubusercontent.com/Kazebeat/gwasOS/master/programs/about-me/profile-pic-main.png" alt="Kazebeat">
 
-  <p>hello, welcome to my site! Before you exit, please check out one of the following: (1) latest crypto research report (2) a beat produced by yours truly (kazebeat) via Slimewire (3) A portfolio of my favorite articles I've written or (4) my linktree for extra goodies.</p>
+    <p>henlo, welcome to my site! Before you exit, please check out one of the following: (1) latest crypto research report (2) a beat produced by yours truly (kazebeat) via Slimewire (3) A portfolio of my favorite articles I've written or (4) my linktree for extra goodies.</p>
 
-  <p>I'm Cody -- A problem-solution oriented engineer, crypto research analyst, and content creator dedicated to pushing the limits of storytelling and cryptocurrency education with a mission to onboard 1 million creatives into web3! I'm devoted to life-long learning and have a passion to educate and inspire others.</p>
+    <p>I'm Cody -- A problem-solution oriented engineer, crypto research analyst, and content creator dedicated to pushing the limits of storytelling and cryptocurrency education with a mission to onboard 1 million creatives into web3! I'm devoted to life-long learning and have a passion to educate and inspire others.</p>
 
-  <p>I've followed the crypto markets since 2014 and have worked professionally as a crypto researcher at Motley Fool for 3.5 years. I've written over 50 institutional-grade research reports on various cryptocurrencies for our 10,000+ Digital Explorers subscribers. Through my personal brand Kazebeat LLC, I've built an audience of 190,000+ through 1500+ pieces of educational crypto content that have generated over 10 million organic views. I've worked as an affiliate and content partner for some of the largest web3 brands including OKX, CoolWallet Pro, Big Time Studios, Mocaverse, and Moralis Money (Ivan on Tech) to name a few.</p>
-  
-  <hr>
-  <p><strong>Quick Links:</strong></p>
-  <ul>
-    <li>🔥 <a href="https://www.beatstars.com/kazebeat" target="_blank">Beat Store</a></li>
-    <li>🌐 <a href="https://linktr.ee/kazebeat" target="_blank">Linktree / Socials</a></li>
-    <li>📦 <a href="YOUR_OTHER_PRODUCTS" target="_blank">Sample Packs & More</a></li>
-  </ul>
+    <p>I've followed the crypto markets since 2014 and have worked professionally as a crypto researcher at Motley Fool for 3.5 years. I've written over 50 institutional-grade research reports on various cryptocurrencies for our 10,000+ Digital Explorers subscribers. Through my personal brand Kazebeat LLC, I've built an audience of 190,000+ through 1500+ pieces of educational crypto content that have generated over 10 million organic views. I've worked as an affiliate and content partner for some of the largest web3 brands including OKX, CoolWallet Pro, Big Time Studios, Mocaverse, and Moralis Money (Ivan on Tech) to name a few.</p>
+    
+    <hr>
+    <p><strong>Quick Links:</strong></p>
+    <ul>
+      <li>🔥 <a href="https://www.beatstars.com/kazebeat" target="_blank">Beat Store</a></li>
+      <li>🌐 <a href="https://linktr.ee/kazebeat" target="_blank">Linktree / Socials</a></li>
+      <li>📦 <a href="#" target="_blank">Sample Packs & More</a></li>
+    </ul>
 
-  <p style="margin-top: 30px; font-size: 13px; color: #555;">
-    Built with love on gwasOS • GG <br>
-    – Kazebeat
-  </p>
+    <p style="margin-top: 30px; font-size: 13px; color: #555;">
+      Built with love on gwasOS • No cap, just vibes.<br>
+      – Kazebeat
+    </p>
+  </div>
 
 </body>
 </html>
