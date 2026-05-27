@@ -57,6 +57,7 @@
     top: 160px !important;
   }
 }
+
     #gwasos-crypto-popup {
       position: fixed !important;
       z-index: 100000 !important;
@@ -90,6 +91,35 @@ div[onclick*="openSoundRecorder"],
 div[title*="My Documents"],
 div[title*="My Pictures"] {
   display: block !important;
+}
+
+/* Force windows to appear ABOVE desktop icons */
+.window,
+.os-gui-window,
+.$window {
+  z-index: 10000 !important;
+}
+
+/* Lower z-index for desktop icons */
+div[onclick*="openCryptoReport"],
+div[onclick*="toggleAboutMeWindow"],
+.desktop-icon,
+div[style*="position: absolute"][onclick] {
+  z-index: 50 !important;
+}
+/* === FORCE WINDOWS ABOVE DESKTOP ICONS === */
+.window,
+.os-gui-window,
+.$window,
+.ui-window {
+  z-index: 999999 !important;
+}
+
+/* Lower desktop icons */
+div[onclick*="openCryptoReport"],
+div[onclick*="toggleAboutMeWindow"],
+div[style*="position: absolute"][onclick] {
+  z-index: 10 !important;
 }
   </style>  
 </head>
@@ -241,34 +271,36 @@ div[title*="My Pictures"] {
   });
 
  function openAboutMeWindow() {
-    const sound = new Audio('programs/about-me/grunt-bday-party.mp3');
-    sound.volume = 0.7;
-    sound.play().catch(() => {});
+  const sound = new Audio('programs/about-me/grunt-bday-party.mp3');
+  sound.volume = 0.7;
+  sound.play().catch(() => {});
 
-    const win = $Window({
-      title: "README.txt - Notepad",
-      icons: { 16: "programs/about-me/coinstack.png" },
-      width: 740,
-      height: 620,
-      resizable: false,
-      minimizable: true,
-      maximizable: true
+  const win = $Window({
+    title: "README.txt - Notepad",
+    icons: { 16: "programs/about-me/coinstack.png" },
+    width: 740,
+    height: 620,
+    resizable: false,
+    minimizable: true,
+    maximizable: true
+  });
+
+  // Force very high z-index
+  setTimeout(() => {
+    if (win.$element) {
+      win.$element.css('z-index', '999999');
+    }
+  }, 100);
+
+  fetch("programs/about-me/index.html")
+    .then(r => r.text())
+    .then(html => {
+      win.$content.html(html);
+    })
+    .catch(() => {
+      win.$content.html("<p>Error loading About Me content.</p>");
     });
-
-    // Auto-maximize after opening (optional)
-    setTimeout(() => {
-      if (win.maximize) win.maximize();
-    }, 200);
-
-    fetch("programs/about-me/index.html")
-      .then(r => r.text())
-      .then(html => {
-        win.$content.html(html);
-      })
-      .catch(() => {
-        win.$content.html("<p>Error loading About Me content.</p>");
-      });
-  }
+}
 
   window.openAboutMe = openAboutMeWindow;
 </script>
