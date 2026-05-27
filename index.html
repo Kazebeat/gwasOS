@@ -180,24 +180,27 @@
   });
 
   function openAboutMeWindow() {
-    const sound = new Audio('https://freesound.org/data/previews/66/66930_931655-lq.mp3');
-    sound.volume = 0.6;
+    const sound = new Audio('programs/about-me/grunt-bday-party.mp3');
+    sound.volume = 0.7;
     sound.play().catch(() => {});
 
     const win = $Window({
       title: "README.txt - Notepad",
       icons: { 16: "images/icons/notepad-16x16.png" },
-      width: 620,
-      height: 520,
+      width: 720,      // Wider for better readability
+      height: 560,     // Taller to reduce scrolling
+      resizable: false,
+      minimizable: true,
+      maximizable: false
     });
 
-    fetch("https://raw.githubusercontent.com/Kazebeat/gwasOS/master/programs/about-me/index.html")
+    fetch("programs/about-me/index.html")
       .then(r => r.text())
       .then(html => {
         win.$content.html(html);
       })
       .catch(() => {
-        win.$content.html("<p>Error loading About Me. Please try refreshing.</p>");
+        win.$content.html("<p>Error loading About Me content.</p>");
       });
   }
 
