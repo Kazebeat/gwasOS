@@ -26,34 +26,35 @@
 <link rel="prefetch" href="/programs/notepad/index.html">
 <!-- === Custom Styles for Crypto Popup & Windows === -->
   <style>
-    /* Responsive Desktop Icons */
+/* Responsive Desktop Icons */
 @media (max-width: 768px) {
-  /* Move icons closer together on mobile */
+  /* Crypto Report Icon */
   div[onclick*="openCryptoReport"] {
-    left: 100px !important;
-    top: 240px !important;
+    left: 40px !important;
+    top: 180px !important;
   }
-}
-
-@media (max-width: 480px) {
-  div[onclick*="openCryptoReport"] {
-    left: 20px !important;
-    top: 220px !important;
-    width: 76px !important;
-  }
-}
+  
   /* About Me Icon */
   div[onclick*="toggleAboutMeWindow"] {
-    left: 130px !important;
-    top: 240px !important;
+    left: 160px !important;
+    top: 180px !important;
   }
+}
 
 @media (max-width: 480px) {
   div[onclick*="openCryptoReport"],
   div[onclick*="toggleAboutMeWindow"] {
-    left: 20px !important;
-    top: 220px !important;
     width: 76px !important;
+  }
+  
+  div[onclick*="openCryptoReport"] {
+    left: 30px !important;
+    top: 160px !important;
+  }
+  
+  div[onclick*="toggleAboutMeWindow"] {
+    left: 130px !important;
+    top: 160px !important;
   }
 }
     #gwasos-crypto-popup {
