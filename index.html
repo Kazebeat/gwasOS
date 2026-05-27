@@ -71,10 +71,18 @@
   <div class="desktop" style="background-image: url(images/clouds.jpg); background-size: cover; background-position: center;">
   </div>
   <!-- ==================== DESKTOP ICONS ==================== -->
-  <div onclick="openCryptoReport()" style="position: absolute; top: 330px; left: 160px; width: 88px; text-align: center; cursor: pointer;">
+  <div onclick="openCryptoReport()" style="position: absolute; top: 370px; left: 300px; width: 88px; text-align: right; cursor: pointer;">
   <img src="programs/crypto-report/bitcoin.png" width="48" height="48">
   <div style="margin-top: 5px; font-size: 12px; color: white; text-shadow: 1px 1px 2px #000;">
     Free Crypto<br>Report
+  </div>
+</div>
+
+<!-- === ABOUT ME DESKTOP ICON (Toggle) === -->
+<div onclick="toggleAboutMeWindow()" style="position: absolute; top: 370px; left: 390px; width: 88px; text-align: right; cursor: pointer; user-select: none;">
+  <img src="programs/about-me/coinstack.png" width="48" height="48" alt="About Me">
+  <div style="margin-top: 5px; font-size: 12px; color: white; text-shadow: 1px 1px 2px #000; line-height: 1.2;">
+    README.txt
   </div>
 </div>
 
@@ -179,7 +187,7 @@
     }, 90);
   });
 
-  function openAboutMeWindow() {
+ function openAboutMeWindow() {
     const sound = new Audio('programs/about-me/grunt-bday-party.mp3');
     sound.volume = 0.7;
     sound.play().catch(() => {});
@@ -187,12 +195,17 @@
     const win = $Window({
       title: "README.txt - Notepad",
       icons: { 16: "images/icons/notepad-16x16.png" },
-      width: 740,      // Wider for better readability
-      height: 580,     // Taller to reduce scrolling
+      width: 740,
+      height: 620,           // Increased height
       resizable: false,
       minimizable: true,
-      maximizable: false
+      maximizable: true      // Allows user to maximize to full height
     });
+
+    // Optional: Auto-maximize the window after opening
+    setTimeout(() => {
+      if (win.maximize) win.maximize();
+    }, 300);
 
     fetch("programs/about-me/index.html")
       .then(r => r.text())
@@ -217,6 +230,18 @@ function toggleCryptoPopup() {
     showGwasosPopup();
   } else {
     hideGwasosPopup();
+  }
+}
+</script>
+<script>
+// Toggle About Me Window
+let aboutMeWindow = null;
+
+function toggleAboutMeWindow() {
+  if (!aboutMeWindow || aboutMeWindow.closed) {
+    openAboutMeWindow();
+  } else {
+    aboutMeWindow.close();
   }
 }
 </script>

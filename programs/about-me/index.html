@@ -15,13 +15,29 @@
     }
 
     .content {
-      padding: 20px 25px;
-      height: calc(100vh - 40px);   /* Full height minus title bar */
-      overflow-y: auto;             /* Enable vertical scrolling */
+      padding: 22px 28px;
+      height: calc(100vh - 42px);
+      overflow-y: scroll;           /* Force scrolling */
+      overflow-x: hidden;
       line-height: 1.65;
       font-size: 14px;
-      width: 100%;
       box-sizing: border-box;
+      scrollbar-width: thin;
+    }
+
+    /* Force scrollbar visibility */
+    .content::-webkit-scrollbar {
+      width: 20px;
+    }
+    .content::-webkit-scrollbar-track {
+      background: #dfdfdf;
+      border-left: 2px solid #808080;
+    }
+    .content::-webkit-scrollbar-thumb {
+      background: #c0c0c0;
+      border: 2px solid #ffffff;
+      border-right-color: #808080;
+      border-bottom-color: #808080;
     }
 
     h1 { 
@@ -35,6 +51,7 @@
       border: 2px solid #000;
       box-shadow: 3px 3px 0 #808080;
       max-width: 180px;
+      draggable: false;
     }
     
     p {
@@ -46,29 +63,10 @@
       margin: 20px 0;
     }
 
-    ul {
-      margin: 10px 0 20px 25px;
-    }
-
-    /* Classic Win98 Scrollbar */
-    .content::-webkit-scrollbar {
-      width: 18px;
-    }
-    .content::-webkit-scrollbar-track {
-      background: #dfdfdf;
-      border-left: 2px solid #808080;
-    }
-    .content::-webkit-scrollbar-thumb {
-      background: #c0c0c0;
-      border: 2px solid #ffffff;
-      border-right-color: #808080;
-      border-bottom-color: #808080;
-    }
-
-    /* Mobile Optimization */
+    /* Mobile */
     @media (max-width: 600px) {
       .content {
-        padding: 15px 18px;
+        padding: 18px 20px;
         font-size: 13.5px;
       }
       img {
@@ -86,7 +84,7 @@
     <h1>📝 README.txt</h1>
     <p><strong>Kazebeat • Music Producer • New York City, NY</strong></p>
 
-    <img src="https://raw.githubusercontent.com/Kazebeat/gwasOS/master/programs/about-me/profile-pic-main.png" alt="Kazebeat">
+    <img src="https://raw.githubusercontent.com/Kazebeat/gwasOS/master/programs/about-me/profile-pic-main.png" alt="Kazebeat" draggable="false">
 
     <p>henlo, welcome to my site! Before you exit, please check out one of the following: (1) latest crypto research report (2) a beat produced by yours truly (kazebeat) via Slimewire (3) A portfolio of my favorite articles I've written or (4) my linktree for extra goodies.</p>
 
