@@ -71,6 +71,25 @@
     .window, .os-gui-window {
       box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.6) !important;
     }
+    /* === HIDE ALL DESKTOP ICONS EXCEPT THE ONES WE WANT === */
+
+/* Hide everything first */
+.desktop > div[onclick],
+.desktop-icon,
+.folder-view-item {
+  display: none !important;
+}
+
+/* Show only the ones we want to keep */
+div[onclick*="openCryptoReport"],
+div[onclick*="toggleAboutMeWindow"],
+div[onclick*="openNotepad"],
+div[onclick*="openSoundRecorder"],
+/* Add these if they have specific onclicks or titles */
+div[title*="My Documents"],
+div[title*="My Pictures"] {
+  display: block !important;
+}
   </style>  
 </head>
 
@@ -227,18 +246,18 @@
 
     const win = $Window({
       title: "README.txt - Notepad",
-      icons: { 16: "images/icons/notepad-16x16.png" },
+      icons: { 16: "programs/about-me/coinstack.png" },
       width: 740,
-      height: 620,           // Increased height
+      height: 620,
       resizable: false,
       minimizable: true,
-      maximizable: true      // Allows user to maximize to full height
+      maximizable: true
     });
 
-    // Optional: Auto-maximize the window after opening
+    // Auto-maximize after opening (optional)
     setTimeout(() => {
       if (win.maximize) win.maximize();
-    }, 300);
+    }, 200);
 
     fetch("programs/about-me/index.html")
       .then(r => r.text())
@@ -246,7 +265,6 @@
         win.$content.html(html);
       })
       .catch(() => {
-        win.$content.html("<p>Error loading About Me content.</p>");
         win.$content.html("<p>Error loading About Me content.</p>");
       });
   }
