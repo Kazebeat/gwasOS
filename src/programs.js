@@ -1302,13 +1302,13 @@ add_icon_not_via_filesystem({
 add_icon_not_via_filesystem({
     title: "Research Reports",
     icons: {
-        16: "images/icons/research-reports16.png",
-        32: "images/icons/research-reports32.png"
+        16: "images/icons/research-reports16x16.png",
+        32: "images/icons/research-reports32x32.png"
     },
     open: () => {
         $Window({
             title: "Research Reports",
-            icons: { 16: "images/icons/research-reports16.png" },
+            icons: { 16: "images/icons/research-reports16x16.png" },
             width: 540,
             height: 450,
             src: "programs/reports/index.html"
