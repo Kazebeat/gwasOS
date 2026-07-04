@@ -1300,15 +1300,15 @@ add_icon_not_via_filesystem({
 	shortcut: true
 });
 add_icon_not_via_filesystem({
-    title: "Research Reports",
+    title: "Research Portfolio",
     icons: {
-        16: "images/icons/research-reports-16x16.png",
-        32: "images/icons/research-reports-32x32.png"
+        16: "images/icons/research-portfolio-16x16.png",
+        32: "images/icons/research-portfolio-32x32.png"
     },
     open: () => {
         $Window({
-            title: "Research Reports",
-            icons: { 16: "images/icons/research-reports-16x16.png" },
+            title: "Research Portfolio",
+            icons: { 16: "images/icons/research-portfolio-16x16.png" },
             width: 540,
             height: 450,
             src: "programs/reports/index.html"
