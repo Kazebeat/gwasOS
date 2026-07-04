@@ -39,6 +39,24 @@
     left: 160px !important;
     top: 180px !important;
   }
+
+  /* Research Portfolio icon - responsive behavior */
+div[onclick*="openResearchPortfolio"] {
+  /* Hide on very small screens if needed */
+}
+
+@media (max-width: 600px) {
+  div[onclick*="openResearchPortfolio"] {
+    top: 420px !important;     /* Adjust vertical position on mobile */
+    left: 20px !important;     /* Adjust horizontal position on mobile */
+    width: 80px !important;
+  }
+  
+  div[onclick*="openResearchPortfolio"] img {
+    width: 42px !important;
+    height: 42px !important;
+  }
+ }
 }
 
 @media (max-width: 480px) {
