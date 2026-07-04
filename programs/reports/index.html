@@ -7,74 +7,120 @@
     body {
       font-family: 'MS Sans Serif', sans-serif;
       margin: 0;
-      padding: 20px;
+      padding: 0;
       background: #c0c0c0;
       color: black;
       font-size: 14px;
-      line-height: 1.5;
+      line-height: 1.55;
+      height: 100%;
+      overflow: hidden;
     }
+
+    .content {
+      padding: 22px 28px;
+      height: calc(100vh - 42px);
+      overflow-y: scroll;
+      overflow-x: hidden;
+      box-sizing: border-box;
+    }
+
     h1 { 
-      margin: 0 0 16px 0; 
-      font-size: 18px; 
+      margin: 0 0 18px 0; 
+      font-size: 19px; 
+      font-weight: bold;
     }
+
+    .intro {
+      margin-bottom: 22px;
+      color: #333;
+    }
+
     .report-item {
-      margin-bottom: 18px;
-      padding-bottom: 14px;
-      border-bottom: 1px solid #808080;
+      background: #dfdfdf;
+      border: 2px solid #808080;
+      padding: 14px 18px;
+      margin-bottom: 16px;
+      box-shadow: inset 1px 1px 0 #ffffff, inset -1px -1px 0 #808080;
     }
+
     .report-item:last-child {
-      border-bottom: none;
       margin-bottom: 0;
-      padding-bottom: 0;
     }
+
     .report-title {
       font-weight: bold;
+      font-size: 15px;
       margin-bottom: 4px;
     }
+
     .report-date {
       font-size: 12px;
       color: #555;
-      margin-bottom: 6px;
-    }
-    .report-desc {
       margin-bottom: 8px;
     }
+
+    .report-desc {
+      margin-bottom: 12px;
+      color: #222;
+    }
+
     .read-btn {
       display: inline-block;
       background: #c0c0c0;
       border: 2px solid #808080;
-      padding: 4px 12px;
+      padding: 6px 16px;
       text-decoration: none;
       color: black;
       font-size: 13px;
+      box-shadow: 1px 1px 0 #ffffff, -1px -1px 0 #808080;
     }
+
     .read-btn:hover {
+      background: #e0e0e0;
+      border-color: #000;
+    }
+
+    /* Retro scrollbar */
+    .content::-webkit-scrollbar {
+      width: 18px;
+    }
+    .content::-webkit-scrollbar-track {
       background: #dfdfdf;
+      border-left: 2px solid #808080;
+    }
+    .content::-webkit-scrollbar-thumb {
+      background: #c0c0c0;
+      border: 2px solid #ffffff;
+      border-right-color: #808080;
+      border-bottom-color: #808080;
     }
   </style>
 </head>
 <body>
 
-  <h1>📄 Research Reports</h1>
-  <p style="margin-bottom: 20px;">Selected research and writing from my work in crypto markets and Web3.</p>
+  <div class="content">
+    <h1>📄 Research Reports</h1>
+    <p class="intro">Selected research and analysis from my work in cryptocurrency markets, Web3, and emerging technologies.</p>
 
-  <!-- REPORT 1 -->
-  <div class="report-item">
-    <div class="report-title">[Report Title 1]</div>
-    <div class="report-date">June 2025</div>
-    <div class="report-desc">Short 1-2 sentence description of what this report covers.</div>
-    <a href="YOUR_NOTION_LINK_HERE" target="_blank" class="read-btn">Read Full Report →</a>
+    <!-- === REPORT 1 === -->
+    <div class="report-item">
+      <div class="report-title">Report Title 1 Goes Here</div>
+      <div class="report-date">June 2025</div>
+      <div class="report-desc">Short 1-2 sentence description of the key findings or focus of this report.</div>
+      <a href="YOUR_NOTION_LINK_HERE" target="_blank" class="read-btn">Read Full Report →</a>
+    </div>
+
+    <!-- === REPORT 2 === -->
+    <div class="report-item">
+      <div class="report-title">Report Title 2 Goes Here</div>
+      <div class="report-date">May 2025</div>
+      <div class="report-desc">Short 1-2 sentence description of the key findings or focus of this report.</div>
+      <a href="YOUR_NOTION_LINK_HERE" target="_blank" class="read-btn">Read Full Report →</a>
+    </div>
+
+    <!-- Add more report blocks here (copy-paste the structure above) -->
+
   </div>
-
-  <!-- REPORT 2 -->
-  <div class="report-item">
-    <div class="report-title">[Report Title 2]</div>
-    <div class="report-date">May 2025</div>
-    <div class="report-desc">Short 1-2 sentence description of what this report covers.</div>
-    <a href="YOUR_NOTION_LINK_HERE" target="_blank" class="read-btn">Read Full Report →</a>
-  </div>
-
-  <!-- Add more reports the same way -->
 
 </body>
 </html>
