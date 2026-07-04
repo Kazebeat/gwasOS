@@ -357,5 +357,26 @@ function toggleAboutMeWindow() {
   }
 }
 </script>
+<script>
+  // Existing functions
+  function openCryptoReport() {
+    // ... existing code
+  }
+
+  function toggleAboutMeWindow() {
+    // ... existing code
+  }
+
+  // === ADD YOUR NEW FUNCTION HERE ===
+  function openResearchPortfolio() {
+    $Window({
+      title: "Research Portfolio",
+      icons: { 16: "images/icons/research-reports-16x16.png" },
+      width: 540,
+      height: 450,
+      src: "programs/reports/index.html"
+    });
+  }
+</script>
 </body>
 </html>
