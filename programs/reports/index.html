@@ -3,124 +3,67 @@
 <head>
   <meta charset="utf-8">
   <title>Research Portfolio</title>
-  <style>   
+  <style>
     body {
       font-family: 'MS Sans Serif', sans-serif;
       margin: 0;
-      padding: 0;
+      padding: 20px;
       background: #c0c0c0;
       color: black;
       font-size: 14px;
-      line-height: 1.55;
-      height: 100%;
-      overflow: hidden;
+      line-height: 1.5;
     }
 
-    .content {
-      padding: 22px 28px;
-      height: calc(100vh - 42px);
-      overflow-y: scroll;
-      overflow-x: hidden;
-      box-sizing: border-box;
-    }
-
-    h1 { 
-      margin: 0 0 18px 0; 
-      font-size: 19px; 
+    h1 {
+      margin: 0 0 12px 0;
+      font-size: 18px;
       font-weight: bold;
     }
 
     .intro {
-      margin-bottom: 22px;
+      margin-bottom: 20px;
       color: #333;
     }
 
-    .report-item {
-      background: #dfdfdf;
-      border: 2px solid #808080;
-      padding: 14px 18px;
-      margin-bottom: 16px;
-      box-shadow: inset 1px 1px 0 #ffffff, inset -1px -1px 0 #808080;
+    ul {
+      padding-left: 22px;
+      margin: 0;
     }
 
-    .report-item:last-child {
-      margin-bottom: 0;
+    li {
+      margin-bottom: 10px;
+      font-size: 14px;
     }
 
-    .report-title {
-      font-weight: bold;
-      font-size: 15px;
-      margin-bottom: 4px;
+    a {
+      color: #0000AA;
+      text-decoration: underline;
     }
 
-    .report-date {
-      font-size: 12px;
-      color: #555;
-      margin-bottom: 8px;
-    }
-
-    .report-desc {
-      margin-bottom: 12px;
-      color: #222;
-    }
-
-    .read-btn {
-      display: inline-block;
-      background: #c0c0c0;
-      border: 2px solid #808080;
-      padding: 6px 16px;
-      text-decoration: none;
-      color: black;
-      font-size: 13px;
-      box-shadow: 1px 1px 0 #ffffff, -1px -1px 0 #808080;
-    }
-
-    .read-btn:hover {
-      background: #e0e0e0;
-      border-color: #000;
-    }
-
-    /* Retro scrollbar */
-    .content::-webkit-scrollbar {
-      width: 18px;
-    }
-    .content::-webkit-scrollbar-track {
-      background: #dfdfdf;
-      border-left: 2px solid #808080;
-    }
-    .content::-webkit-scrollbar-thumb {
-      background: #c0c0c0;
-      border: 2px solid #ffffff;
-      border-right-color: #808080;
-      border-bottom-color: #808080;
+    a:hover {
+      color: #000080;
     }
   </style>
 </head>
 <body>
 
-  <div class="content">
-    <h1>📄 Research Portfolio</h1>
-    <p class="intro">Selected research and analysis from my work in cryptocurrency markets, Web3, and emerging technologies.</p>
+  <h1>📄 Research Portfolio</h1>
+  
+  <p class="intro">Selected research and writing from my work in cryptocurrency markets and Web3.</p>
 
-    <!-- === REPORT 1 === -->
-    <div class="report-item">
-      <div class="report-title">Interoperability Landscape 2024</div>
-      <div class="report-date">June 2025</div>
-      <div class="report-desc">The report explains how blockchain interoperability has shifted from hack-prone “lock-and-mint” bridges to decentralized messaging protocols that securely pass data between chains, enabling everything from asset transfers to more complex cross-chain applications. It compares the leading protocols (LayerZero, Wormhole, Axelar), discusses how incentives/airdrops and tokenomics affect their apparent traction and valuation, and highlights “intents” as a potential next wave that lets users specify outcomes while solvers compete to execute the best route.</div>
-      <a href="https://silk-brake-194.notion.site/Interoperability-Landscape-2024-393ca768ac5a80dcab07f34664f2ba7c?source=copy_link" target="_blank" class="read-btn">Read Full Report →</a>
-    </div>
-
-    <!-- === REPORT 2 === -->
-    <div class="report-item">
-      <div class="report-title">Anyone Protocol</div>
-      <div class="report-date">May 2025</div>
-      <div class="report-desc">Short 1-2 sentence description of the key findings or focus of this report.</div>
-      <a href="https://silk-brake-194.notion.site/Anyone-Protocol-Research-396ca768ac5a8050899cc83243ca2da3?source=copy_link" target="_blank" class="read-btn">Read Full Report →</a>
-    </div>
-
-    <!-- Add more report blocks here (copy-paste the structure above) -->
-
-  </div>
+  <ul>
+    <li>
+      <a href="https://your-notion-link-here-1" target="_blank">
+        Interoperability Landscape 2024
+      </a>
+    </li>
+    <li>
+      <a href="https://your-notion-link-here-2" target="_blank">
+        Report Title 2
+      </a>
+    </li>
+    <!-- Add more reports below this line -->
+  </ul>
 
 </body>
 </html>
