@@ -362,14 +362,26 @@ function toggleAboutMeWindow() {
 
 <script>
   function openResearchPortfolio() {
-    $Window({
+    const win = $Window({
       title: "Research Portfolio",
       icons: { 16: "images/icons/research-portfolio-16x16.png" },
       width: 540,
       height: 450,
-      src: "programs/reports/index.html"
+      resizable: true,
+      minimizable: true,
+      maximizable: true
     });
+
+    fetch("programs/reports/index.html")
+      .then(r => r.text())
+      .then(html => {
+        win.$content.html(html);
+      })
+      .catch(() => {
+        win.$content.html("<p>Error loading Research Portfolio content.</p>");
+      });
   }
 </script>
+
 </body>
 </html>
